@@ -1,30 +1,45 @@
 import React, { useContext, useState } from "react";
 import { Context } from '../../context';
 
-const AddAction = () => {
-  const { dispatch } = useContext(Context);
-  const [todoTitle, setTodoTitle] = useState('');
+const AddAction = ({addTask}) => {
+  // const { dispatch } = useContext(Context);
+  const [userInput, setUserInput] = useState('');
 
-  const addTodo = event => {
+  // const addTodo = event => {
+  //   if (event.key === 'Enter') {
+  //     dispatch({
+  //       type: 'add',
+  //       payload: todoTitle
+  //     })
+  //     setTodoTitle('')
+  //   }
+  // }
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    addTask(userInput)
+    setUserInput("")
+  }
+
+  const handleChange = (event) => {
+    setUserInput(event.currentTarget.value )
+  }
+  const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
-      dispatch({
-        type: 'add',
-        payload: todoTitle
-      })
-      setTodoTitle('')
+      handleSubmit(event)
     }
   }
 
   return (
-    <div className="input-field">
+    <form onSubmit={handleSubmit}>
       <input
-        type="text"
-        value={todoTitle}
-        onChange={event => setTodoTitle(event.target.value)}
-        onKeyDown={addTodo}
-      />
-      <label>Todo name</label>
-    </div>
+      value={userInput}
+      type='text'
+      onChange={handleChange}
+      onKeyDown={handleKeyPress}
+      placeholder="Введите значение..." />
+      <button onClick={handleSubmit}>Добавить</button>
+      </form>
   );
 };
 

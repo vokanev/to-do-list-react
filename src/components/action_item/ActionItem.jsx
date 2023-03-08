@@ -1,30 +1,18 @@
-import { type } from "@testing-library/user-event/dist/type";
 import React, { useContext } from "react";
-import { Context } from "../../context";
 
-function ActionItem({ title, id, completed }) {
-    const { dispatch } = useContext(Context);
-
-    const handleCheckboxChange = (event) => {
-        // const isChecked = event.target.checked;
-        
-        dispatch({ type: 'toggle', payload: id });
-    }
-
+function ActionItem({ todo, toggleTask, removeTask}) {
     return (
-        <li>
-            <input
-                type='checkbox'
-                onChange={ handleCheckboxChange } />
-            <span>{title}</span>
-            <button onClick={() => dispatch({
-                type: "remove",
-                payload: id
-            })
-            }>
-                delete
+        <div key={todo.id} className="item-todo">
+            <div 
+                className={todo.complete ? "item-text strike" : "item-text"}
+                onClick={() => toggleTask(todo.id)}
+                >
+                {todo.task}
+            </div>
+            <button className="item-delete" onClick={() => removeTask(todo.id)}>
+                X
             </button>
-        </li>
+        </div>
     );
 }
 
