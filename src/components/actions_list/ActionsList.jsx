@@ -1,10 +1,18 @@
 import React, { useReducer, useState } from "react";
 import ActionItem from "../action_item/ActionItem";
+import styles from './ActionsList.module.css'
 
 function ActionsList({todos}) {
     return (
-    <div>
-        {todos.map(item => <ActionItem key={item.id} {...item} />)}
+    <div className={styles.list}>
+        {todos.map((todo) => {
+            return (
+              <ActionItem
+              key={todo.id}
+              todo={todo}
+              />
+              )
+            })}
     </div>
     )
 }

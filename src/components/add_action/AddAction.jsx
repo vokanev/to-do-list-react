@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import styles from './AddAction.module.css'
-import { Context } from '../../context';
+import { Context } from '../../utils/context';
 
 const AddAction = ({addTask}) => {
   const [userInput, setUserInput] = useState('');

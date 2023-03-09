@@ -1,60 +1,33 @@
 import {useReducer} from 'react';
 
-import ActionItem from './components/action_item/ActionItem';
 import ActionsList from './components/actions_list/ActionsList';
 import './App.css';
 import AddAction from './components/add_action/AddAction';
 import Title from './components/title/Title';
-import {Context} from './context';
-import reducer from './reducer';
-import TodoList from './TodoList';
+import {Context} from './utils/context';
+import reducer from './utils/reducer';
 import { useState } from 'react';
 
 function App() {
-  // const [state, dispatch] = useReducer(reducer, [])
-  const [todos, setTodos] = useState([]);
+  const [todos, dispatch] = useReducer(reducer, [])
+  // const [todos, setTodos] = useState([]);
 
   const addTask = (userInput) => {
-    if (userInput) {
-      const newItem = {
-        id: Math.random().toString().substr(2, 9),
-        task: userInput,
-        complete: false
-      }
-      setTodos([...todos, newItem])
-      console.log(todos.length)
-    }
+    dispatch({
+      type: "add",
+      payload: userInput
+    })
   }
-  const removeTask = (id) => {
-    setTodos([...todos.filter((todo) => todo.id !== id)])
-  }
-
-  const handleToggle = (id) => {
-    setTodos([
-      ...todos.map((todo) => 
-        todo.id === id ? { ...todo, complete: !todo.complete } : {...todo }
-      )
-    ])
-  }
-
   return (<Context.Provider value = {{
-      // dispatch
+      dispatch
     }}>
       <div className = 'App'>
         <Title text ='Список задач' />
         <AddAction addTask={addTask}/>
-        <div className='list'>
-          {todos.map((todo) => {
-            return (
-              <ActionItem
-              todo={todo}
-              key={todo.id}
-              toggleTask={handleToggle}
-              removeTask={removeTask}
-              />
-              )
-            })}
-        </div>
+
+        <ActionsList todos={todos } />
+        {/* <ActionsList todos={todos.filter(todo => !todo.complete) } />
+        <ActionsList todos={todos.filter(todo => todo.complete)} /> */}
       </div>
 
     </Context.Provider>);
