@@ -1,0 +1,9 @@
+.inputForm {
+    display: flex;
+    background-color: antiquewhite;
+    margin: 5px 10px;
+}
+
+.newActionName {
+    flex-grow: 1;
+}

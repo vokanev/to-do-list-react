@@ -1,19 +1,9 @@
 import React, { useContext, useState } from "react";
+import styles from './AddAction.module.css'
 import { Context } from '../../context';
 
 const AddAction = ({addTask}) => {
-  // const { dispatch } = useContext(Context);
   const [userInput, setUserInput] = useState('');
-
-  // const addTodo = event => {
-  //   if (event.key === 'Enter') {
-  //     dispatch({
-  //       type: 'add',
-  //       payload: todoTitle
-  //     })
-  //     setTodoTitle('')
-  //   }
-  // }
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -31,8 +21,9 @@ const AddAction = ({addTask}) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={ styles.inputForm } onSubmit={handleSubmit}>
       <input
+      className={styles.newActionName}
       value={userInput}
       type='text'
       onChange={handleChange}

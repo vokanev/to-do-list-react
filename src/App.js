@@ -2,6 +2,7 @@ import {useReducer} from 'react';
 
 import ActionItem from './components/action_item/ActionItem';
 import ActionsList from './components/actions_list/ActionsList';
+import './App.css';
 import AddAction from './components/add_action/AddAction';
 import Title from './components/title/Title';
 import {Context} from './context';
@@ -10,10 +11,7 @@ import TodoList from './TodoList';
 import { useState } from 'react';
 
 function App() {
-  // const [state, dispatch] = useReducer(reducer, [
-  //   {title: 'task1', id: 1, completed: false},
-  //   {title: 'task2', id: 2, completed: true}
-  // ])
+  // const [state, dispatch] = useReducer(reducer, [])
   const [todos, setTodos] = useState([]);
 
   const addTask = (userInput) => {
@@ -40,20 +38,23 @@ function App() {
   }
 
   return (<Context.Provider value = {{
+      // dispatch
     }}>
       <div className = 'App'>
         <Title text ='Список задач' />
         <AddAction addTask={addTask}/>
-        {todos.map((todo) => {
-        return (
-          <ActionItem
-            todo={todo}
-            key={todo.id}
-            toggleTask={handleToggle}
-            removeTask={removeTask}
-            />
-        )
-      })}
+        <div className='list'>
+          {todos.map((todo) => {
+            return (
+              <ActionItem
+              todo={todo}
+              key={todo.id}
+              toggleTask={handleToggle}
+              removeTask={removeTask}
+              />
+              )
+            })}
+        </div>
       </div>
 
     </Context.Provider>);

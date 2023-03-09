@@ -1,17 +1,13 @@
 import React, { useState } from "react";
+import styles from './Title.module.css';
 
 function Title({ text }) {
     const [headerText, setHeaderText] = useState(text);
     const [isEditing, setIsEditing] = useState(false);
 
-    const handleKeyDown = (event) => {
-        if (event.key === 'Enter') {
-            setIsEditing(false);
-        }
-    };
 
     return (
-        <h1>
+        <h1 className={styles.title}>
             {headerText}
         </h1>
     );
