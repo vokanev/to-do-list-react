@@ -1,4 +1,3 @@
-import React, { useReducer, useState } from "react";
 import ActionItem from "../action_item/ActionItem";
 import styles from './ActionsList.module.css'
 

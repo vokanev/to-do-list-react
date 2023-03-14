@@ -1,13 +1,18 @@
 import React, { useContext, useState } from "react";
 import styles from './AddAction.module.css'
 import { Context } from '../../utils/context';
+import ActionButton from "../action_button/ActionButton";
 
-const AddAction = ({addTask}) => {
+const AddAction = () => {
+  const { dispatch } = useContext(Context);
   const [userInput, setUserInput] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    addTask(userInput)
+    dispatch({
+      type: 'add',
+      payload: userInput
+    })
     setUserInput("")
   }
 
@@ -29,7 +34,7 @@ const AddAction = ({addTask}) => {
       onChange={handleChange}
       onKeyDown={handleKeyPress}
       placeholder="Введите значение..." />
-      <button onClick={handleSubmit}>Добавить</button>
+      <ActionButton onClick={handleSubmit}>Add</ActionButton>
       </form>
   );
 };

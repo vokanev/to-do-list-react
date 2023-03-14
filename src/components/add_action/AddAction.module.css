@@ -1,9 +1,17 @@
 .inputForm {
     display: flex;
-    background-color: antiquewhite;
-    margin: 5px 10px;
+    background-color: #c7fcec;
+    margin: 5px 0px;
+    height: 1%;
+    padding: 5px;
 }
 
 .newActionName {
     flex-grow: 1;
+    border: none;
+    background-color: transparent;
+}
+
+.newActionName:focus {
+    outline: none;
 }

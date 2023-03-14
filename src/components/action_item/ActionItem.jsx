@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import styles from './ActionItem.module.css'
 import { Context } from "../../utils/context";
+import ActionButton from "../action_button/ActionButton";
+
 
 function ActionItem({ todo, toggleTask, removeTask}) {
     let { dispatch } = useContext(Context)
@@ -12,7 +14,7 @@ function ActionItem({ todo, toggleTask, removeTask}) {
         })
     }
 
-    const handleRemove = (todo) => {
+    const handleRemove = () => {
         dispatch({
             type: 'remove',
             payload: todo.id
@@ -31,9 +33,9 @@ function ActionItem({ todo, toggleTask, removeTask}) {
                 >
                 {todo.task}
             </div>
-            <button className="item-delete" onClick={() => handleRemove(todo)}>
-                Delete
-            </button>
+            <ActionButton onClick={handleRemove}>Delete</ActionButton>
+            {/* <ActionButton text='Delete' action= {console.log('Delete')} /> */}
+
         </div>
     );
 }

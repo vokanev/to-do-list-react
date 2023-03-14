@@ -20,6 +20,9 @@ export default function (state, action) {
       
     case 'remove':
       return state.filter(todo => todo.id !== action.payload)
+
+    case 'removeAll':
+      return []
     default:
       return state
   }
