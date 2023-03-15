@@ -13,7 +13,8 @@ import SortingSelector from './components/sorting_selector/SortingSelector';
 function App() {
   const [todos, dispatch] = useReducer(
       reducer,
-      JSON.parse(localStorage.getItem('todoList') || JSON.stringify([])))
+      JSON.parse(localStorage.getItem('todoList') || JSON.stringify([])));
+  const [searchPhrase, setSearchPhrase] = useState("");
 
   useEffect(
       () => {localStorage.setItem('todoList', JSON.stringify(todos))}, [todos])
@@ -30,13 +31,18 @@ function App() {
         <AddAction />
         <ActionButton onClick={clearAll}>Clear all</ActionButton>
 
-        <div>
+        <div className="actionsBlock">
           <SortingSelector />
-          <input type='text' />
-          <ActionButton>Search</ActionButton>
+          <input type='text'
+          placeholder='Search'
+          value={searchPhrase}
+          onChange={(event) => setSearchPhrase(event.target.value)}
+          />
         </div>
 
-        <ActionsList todos={ todos } />
+        <ActionsList todos={ searchPhrase ? todos.filter((todo) => {
+          return todo.task.toLowerCase().includes(searchPhrase.toLocaleLowerCase())
+        }) : todos } />
       </div>
 
     </Context.Provider>);

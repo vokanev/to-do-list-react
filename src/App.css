@@ -18,3 +18,8 @@
 
     list-style-type: none;
 }
+
+.actionsBlock {
+    display: flex;
+    justify-content: space-between;
+}
