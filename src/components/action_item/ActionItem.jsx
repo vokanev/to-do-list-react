@@ -22,16 +22,16 @@ function ActionItem({ todo, toggleTask, removeTask}) {
     }
 
     let textStyle = styles.itemText;
-    if (todo.complete) {
+    if (todo.completed) {
         textStyle = textStyle + " " + styles.strike;
     }
     return (
         <div key={todo.id} className={styles.itemTodo}>
-            <input type="checkbox" checked={todo.complete} onChange={() => handleToggle(todo)} />
+            <input type="checkbox" checked={todo.completed} onChange={() => handleToggle(todo)} />
             <div 
                 className={textStyle}
                 >
-                {todo.task}
+                {todo.todo}
             </div>
             <ActionButton onClick={handleRemove}>Delete</ActionButton>
             {/* <ActionButton text='Delete' action= {console.log('Delete')} /> */}
