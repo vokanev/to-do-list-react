@@ -4,19 +4,12 @@ export default function Reducer(state, action) {
       return [...action.payload]
 
     case 'add':
-      return action.payload ? [
-        ...state,
-        {
-          id: Math.random().toString().substring(3, 9),
-          todo: action.payload,
-          completed: false
-        }
-      ] : state
+      return [...state, action.payload]
 
     case 'toggle':
       return [
         ...state.map((todo) =>
-          todo.id === action.payload ? { ...todo, completed: !todo.completed } : { ...todo }
+          todo.id === action.payload.id ? action.payload : { ...todo }
         )
       ]
 
@@ -53,7 +46,7 @@ export default function Reducer(state, action) {
       }
       
     case 'remove':
-      return state.filter(todo => todo.id !== action.payload)
+      return state.filter(todo => todo.id !== action.payload.id)
 
     case 'removeAll':
       return []

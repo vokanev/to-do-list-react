@@ -1,43 +1,52 @@
 import React, { useContext } from "react";
-import styles from './ActionItem.module.css'
+import styles from "./ActionItem.module.css";
 import { Context } from "../../utils/context";
 import ActionButton from "../action_button/ActionButton";
+import axios from 'axios'
 
+function ActionItem({ todo, toggleTask, removeTask }) {
+  let { dispatch } = useContext(Context);
 
-function ActionItem({ todo, toggleTask, removeTask}) {
-    let { dispatch } = useContext(Context)
-
-    const handleToggle = (todo) => {
+  const handleToggle = (todo) => {
+    axios
+      .put("https://dummyjson.com/todos/" + todo.id, {
+        completed: !todo.completed,
+      })
+      .then((res) =>
         dispatch({
-            type: 'toggle',
-            payload: todo.id
+          type: "toggle",
+          payload: res.data,
         })
-    }
+      );
+  };
 
-    const handleRemove = () => {
+  const handleRemove = () => {
+    axios
+      .delete("https://dummyjson.com/todos/" + todo.id)
+      .then((res) =>
         dispatch({
-            type: 'remove',
-            payload: todo.id
+          type: "remove",
+          payload: res.data,
         })
-    }
+      );
+  };
 
-    let textStyle = styles.itemText;
-    if (todo.completed) {
-        textStyle = textStyle + " " + styles.strike;
-    }
-    return (
-        <div key={todo.id} className={styles.itemTodo}>
-            <input type="checkbox" checked={todo.completed} onChange={() => handleToggle(todo)} />
-            <div 
-                className={textStyle}
-                >
-                {todo.todo}
-            </div>
-            <ActionButton onClick={handleRemove}>Delete</ActionButton>
-            {/* <ActionButton text='Delete' action= {console.log('Delete')} /> */}
-
-        </div>
-    );
+  let textStyle = styles.itemText;
+  if (todo.completed) {
+    textStyle = textStyle + " " + styles.strike;
+  }
+  return (
+    <div key={todo.id} className={styles.itemTodo}>
+      <input
+        type="checkbox"
+        checked={todo.completed}
+        onChange={() => handleToggle(todo)}
+      />
+      <div className={textStyle}>{todo.todo}</div>
+      <ActionButton onClick={handleRemove}>Delete</ActionButton>
+      {/* <ActionButton text='Delete' action= {console.log('Delete')} /> */}
+    </div>
+  );
 }
 
 export default ActionItem;

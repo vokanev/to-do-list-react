@@ -2,17 +2,24 @@ import React, { useContext, useState } from "react";
 import styles from './AddAction.module.css'
 import { Context } from '../../utils/context';
 import ActionButton from "../action_button/ActionButton";
+import axios from 'axios'
 
 const AddAction = () => {
   const { dispatch } = useContext(Context);
   const [userInput, setUserInput] = useState('');
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    dispatch({
+    axios.post('https://dummyjson.com/todos/add', {
+        todo: userInput,
+        completed: false,
+        userId: 5,
+    }
+    )
+    .then(res => dispatch({
       type: 'add',
-      payload: userInput
-    })
+      payload: res.data
+    }))    
     setUserInput("")
   }
 
