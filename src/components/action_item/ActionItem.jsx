@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 function ActionItem({ todo, toggleTask, removeTask }) {
   let { dispatch } = useContext(Context);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleToggle = (todo) => {
     axios
@@ -45,7 +45,7 @@ function ActionItem({ todo, toggleTask, removeTask }) {
         onChange={() => handleToggle(todo)}
       />
       <div className={textStyle} >{todo.todo}</div>
-      <ActionButton onClick={navigate('/todo/' + todo.id)}>Details</ActionButton>
+      {/* <ActionButton onClick={navigate('/todo/' + todo.id)}>Details</ActionButton> */}
       <ActionButton onClick={handleRemove}>Delete</ActionButton>
       {/* <ActionButton text='Delete' action= {console.log('Delete')} /> */}
     </div>

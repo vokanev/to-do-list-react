@@ -1,19 +1,22 @@
 import ActionItem from "../action_item/ActionItem";
-import styles from './ActionsList.module.css'
+import styles from "./ActionsList.module.css";
 
-function ActionsList({todos}) {
-    return (
+function ActionsList({ todos, sorting, filter }) {
+  const values = filter
+    ? todos.filter((todo) =>
+        todo.todo.toLowerCase().includes(filter.toLowerCase())
+      )
+    : todos;
+  if (sorting) {
+    values.sort(sorting);
+  }
+  return (
     <div className={styles.list}>
-        {todos.map((todo) => {
-            return (
-              <ActionItem
-              key={todo.id}
-              todo={todo}
-              />
-              )
-            })}
+      {values.map((todo) => {
+        return <ActionItem key={todo.id} todo={todo} />;
+      })}
     </div>
-    )
+  );
 }
 
 export default ActionsList;
