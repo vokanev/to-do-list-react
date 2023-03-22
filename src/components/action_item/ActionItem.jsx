@@ -19,7 +19,18 @@ function ActionItem({ todo, toggleTask, removeTask }) {
           type: "toggle",
           payload: res.data,
         })
-      );
+      )
+      .catch(error => {
+        console.log("toggle error");
+        dispatch({
+          type: "toggle",
+          payload: {
+            id: todo.id,
+            completed: !todo.completed,
+            todo: todo.todo
+          },
+        })
+      });
   };
 
   const handleRemove = () => {
@@ -30,7 +41,13 @@ function ActionItem({ todo, toggleTask, removeTask }) {
           type: "remove",
           payload: res.data,
         })
-      );
+      )
+      .catch(error => {
+        dispatch({
+          type: "remove",
+          payload: todo
+        })
+      })
   };
 
   let textStyle = styles.itemText;

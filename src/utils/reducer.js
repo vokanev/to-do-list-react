@@ -7,6 +7,7 @@ export const Reducer = (state, action) => {
       return [...state, action.payload]
 
     case 'toggle':
+      console.log('toggle called')
       return [
         ...state.map((todo) =>
           todo.id === action.payload.id ? action.payload : { ...todo }
