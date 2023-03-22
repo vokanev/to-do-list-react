@@ -1,0 +1,25 @@
+.app {
+    display: flex;
+    height: 100vp;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    background-color: black;
+    // height: 20vh;
+    height: 200px;
+    width: 100%;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.newAction {
+    // translate: 0 -50vh;
+    transform: translate(0%, -50%);
+    height: 50px;
+}

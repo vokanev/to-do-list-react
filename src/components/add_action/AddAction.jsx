@@ -33,16 +33,19 @@ const AddAction = () => {
   }
 
   return (
-    <form className={ styles.inputForm } onSubmit={handleSubmit}>
+    <div className={ styles.newActionBlock } onSubmit={handleSubmit}>
       <input
       className={styles.newActionName}
       value={userInput}
       type='text'
       onChange={handleChange}
       onKeyDown={handleKeyPress}
-      placeholder="Введите значение..." />
-      <ActionButton onClick={handleSubmit}>Add</ActionButton>
-      </form>
+      placeholder="Add a new task" />
+      <button className={styles.addActionButton} onClick={handleSubmit}>
+        Create
+      </button>
+      {/* <ActionButton onClick={handleSubmit}>Add</ActionButton> */}
+    </div>
   );
 };
 

@@ -1,17 +1,23 @@
-.inputForm {
+.newActionBlock {
     display: flex;
-    background-color: #c7fcec;
-    margin: 5px 0px;
-    height: 1%;
-    padding: 5px;
 }
 
 .newActionName {
+    box-sizing: border-box;
     flex-grow: 1;
-    border: none;
-    background-color: transparent;
+    color: #808080;
+    background-color: #333333;
+    border: 1px solid #0D0D0D;
+    border-radius: 8px;
+    gap: 8px;
 }
 
 .newActionName:focus {
     outline: none;
+}
+
+.addActionButton {
+    color: white;
+    background: #1E6F9F;
+    border-radius: 8px;
 }

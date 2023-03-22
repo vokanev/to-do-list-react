@@ -12,7 +12,7 @@ import {TodoList} from './components/todo_list/TodoList';
 function App() {
   return (
     <>
-    <Navbar />
+    {/* <Navbar /> */}
     <Routes>
       <Route path='/' element={
 <Home/>} />
