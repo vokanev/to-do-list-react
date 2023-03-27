@@ -1,0 +1,39 @@
+@import "../../styleVariables";
+
+.itemTodo {
+  border: 1px solid $gray_400;
+  background-color: $gray_500;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.06);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 16px;
+  gap: 12px;
+  margin: 0;
+  .strike {
+    color: $gray_300;
+    text-decoration: line-through;
+  }
+}
+
+.itemText {
+  color: $gray_100;
+  margin: 0;
+  flex: auto;
+}
+
+.removeTask {
+    width: 24px;
+    height: 24px;
+    background-color: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    border-radius: 4px;
+    &:hover {
+        background-color: $gray_400;
+    }
+}

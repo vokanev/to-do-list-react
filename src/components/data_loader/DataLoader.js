@@ -2,7 +2,7 @@ import axios from "axios";
 
 import { useEffect, useContext, useState } from "react";
 
-import { Context } from "./../../utils/context";
+import { Context } from "../../utils/context";
 
 export const DataLoader = () => {
   const { dispatch } = useContext(Context);
@@ -29,5 +29,5 @@ export const DataLoader = () => {
     fetchData();
   }, []);
 
-  return isLoading ? <div>Loading</div> : error ? <div>Error</div> : null;
+  // return isLoading ? <div>Loading</div> : error ? <div>Error</div> : null;
 };

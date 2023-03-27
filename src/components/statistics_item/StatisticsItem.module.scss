@@ -1,0 +1,25 @@
+@import "../../styleVariables";
+
+.content {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+}
+
+.totalAction {
+    color: $blue;
+}
+
+.completed {
+    color: $purple;
+}
+
+.counter {
+    color: $gray_200;
+    background-color: $gray_400;
+    padding: 2px 8px;
+    border-radius: 999px;
+}

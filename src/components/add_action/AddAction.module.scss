@@ -1,0 +1,39 @@
+@import "../../styleVariables";
+
+.newActionBlock {
+  display: flex;
+  height: 54px;
+  gap: 8px;
+  width: 50%;
+}
+
+.newActionName {
+  box-sizing: border-box;
+  flex-grow: 1;
+  color: $gray_300;
+  background-color: $gray_400;
+  border: 1px solid $gray_700;
+  border-radius: 8px;
+  padding: 16px;
+  &:focus {
+    outline: none;
+    border-color: $purple-dark;
+    color: $gray_100;
+  }
+}
+
+.addActionButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: $gray_100;
+  font-weight: 700;
+  font-size: 14px;
+  background: $blue-dark;
+  border-radius: 8px;
+  padding: 16px;
+
+  &:hover {
+    background-color: $blue;
+  }
+}

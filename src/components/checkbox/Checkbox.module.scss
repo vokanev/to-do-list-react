@@ -1,0 +1,23 @@
+.checkboxWrapper {
+    height: 24px;
+    width: 24px;
+    background-image: url("../../assets/checkbox/unchecked.svg");
+    background-repeat: no-repeat;
+    &:hover {
+        background-image: url("../../assets/checkbox/unchecked_hover.svg");
+    }
+    &.checked {
+        background-image: url("../../assets/checkbox/checked.svg");
+        &:hover {
+            background-image: url("../../assets/checkbox/checked_hover.svg");
+        }
+    }
+    input[type="checkbox"] {
+        width: 100%;
+        height: 100%;
+        -webkit-appearance: none;
+        appearance: none;
+        outline: none;
+        cursor: pointer;
+    }
+}

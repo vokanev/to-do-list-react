@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
-import styles from './AddAction.module.css'
+import styles from './AddAction.module.scss'
 import { Context } from '../../utils/context';
 import ActionButton from "../action_button/ActionButton";
+import plus from '../../assets/plus.svg'; 
 import axios from 'axios'
 
 const AddAction = () => {
@@ -43,6 +44,7 @@ const AddAction = () => {
       placeholder="Add a new task" />
       <button className={styles.addActionButton} onClick={handleSubmit}>
         Create
+        <img src= {plus} />
       </button>
       {/* <ActionButton onClick={handleSubmit}>Add</ActionButton> */}
     </div>

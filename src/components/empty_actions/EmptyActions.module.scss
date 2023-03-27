@@ -1,0 +1,18 @@
+@import "../../styleVariables";
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 64px 24px;
+  gap: 16px;
+  border-top: 1px solid $gray_400;
+  border-radius: 8px;
+  width: 50%;
+}
+
+.label {
+    color: $gray_300;
+    font-weight: 700;
+}

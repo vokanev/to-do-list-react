@@ -1,5 +1,5 @@
 import ActionItem from "../action_item/ActionItem";
-import styles from "./ActionsList.module.css";
+import styles from "./ActionsList.module.scss";
 
 function ActionsList({ todos, sorting, filter }) {
   const values = filter
