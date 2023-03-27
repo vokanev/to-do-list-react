@@ -28,6 +28,4 @@ export const DataLoader = () => {
   useEffect(() => {
     fetchData();
   }, []);
-
-  // return isLoading ? <div>Loading</div> : error ? <div>Error</div> : null;
 };

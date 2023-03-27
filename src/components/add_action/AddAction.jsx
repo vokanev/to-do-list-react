@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import styles from './AddAction.module.scss'
 import { Context } from '../../utils/context';
-import ActionButton from "../action_button/ActionButton";
 import plus from '../../assets/plus.svg'; 
 import axios from 'axios'
 
@@ -46,7 +45,6 @@ const AddAction = () => {
         Create
         <img src= {plus} />
       </button>
-      {/* <ActionButton onClick={handleSubmit}>Add</ActionButton> */}
     </div>
   );
 };

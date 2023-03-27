@@ -1,9 +1,7 @@
 import React, { useContext, useState } from "react";
 import styles from "./ActionItem.module.scss";
 import { Context } from "../../utils/context";
-import ActionButton from "../action_button/ActionButton";
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom';
 import trash from '../../assets/trash.svg';
 import trashHover from '../../assets/trash_hover.svg';
 import Checkbox from "../checkbox/Checkbox";
@@ -12,7 +10,6 @@ function ActionItem({ todo, toggleTask, removeTask }) {
   let { dispatch } = useContext(Context);
   let [isDeleteHovered, setIsDeleteHovered] = useState(false);
   let [isChecked, setIsChecked] = useState(todo.checked);
-  // const navigate = useNavigate();
 
   const handleToggle = (todo) => {
     axios
@@ -67,18 +64,6 @@ function ActionItem({ todo, toggleTask, removeTask }) {
         checked={todo.completed}
         onChange={() => handleToggle(todo)}
       />
-      {/* <Checkbox
-        checked={todo.checked}
-        icon={<img src={uncheckedIcon} />}
-        checkedIcon={<img src={checkedIcon} />}
-        onChange={() => handleToggle(todo)}
-      /> */}
-      {/* <input
-        type="checkbox"
-        className={styles.checkbox}
-        checked={todo.completed}
-        onChange={() => handleToggle(todo)}
-      /> */}
       <div className={textStyle} >{todo.todo}</div>
       <button className={styles.removeTask} onClick={handleRemove} onMouseOver={()=> setIsDeleteHovered(true)} onMouseOut={()=>setIsDeleteHovered(false)}>
         <img src={isDeleteHovered ? trashHover : trash} />
