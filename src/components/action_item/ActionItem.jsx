@@ -3,11 +3,9 @@ import styles from "./ActionItem.module.css";
 import { Context } from "../../utils/context";
 import ActionButton from "../action_button/ActionButton";
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom';
 
 function ActionItem({ todo, toggleTask, removeTask }) {
   let { dispatch } = useContext(Context);
-  // const navigate = useNavigate();
 
   const handleToggle = (todo) => {
     axios
@@ -45,9 +43,7 @@ function ActionItem({ todo, toggleTask, removeTask }) {
         onChange={() => handleToggle(todo)}
       />
       <div className={textStyle} >{todo.todo}</div>
-      {/* <ActionButton onClick={navigate('/todo/' + todo.id)}>Details</ActionButton> */}
       <ActionButton onClick={handleRemove}>Delete</ActionButton>
-      {/* <ActionButton text='Delete' action= {console.log('Delete')} /> */}
     </div>
   );
 }
