@@ -2,10 +2,12 @@ import React, { useContext } from "react";
 import styles from "./ActionItem.module.css";
 import { Context } from "../../utils/context";
 import ActionButton from "../action_button/ActionButton";
-import axios from 'axios'
+import axios from 'axios';
+import {useNavigate} from 'react-router-dom';
 
 function ActionItem({ todo, toggleTask, removeTask }) {
   let { dispatch } = useContext(Context);
+  let navigate = useNavigate();
 
   const handleToggle = (todo) => {
     axios
@@ -48,6 +50,10 @@ function ActionItem({ todo, toggleTask, removeTask }) {
       })
   };
 
+  const handleInfo = () => {
+
+  }
+
   let textStyle = styles.itemText;
   if (todo.completed) {
     textStyle = textStyle + " " + styles.strike;
@@ -60,6 +66,7 @@ function ActionItem({ todo, toggleTask, removeTask }) {
         onChange={() => handleToggle(todo)}
       />
       <div className={textStyle} >{todo.todo}</div>
+      <ActionButton onClick={() => navigate(`${todo.id}`)}>Info</ActionButton>
       <ActionButton onClick={handleRemove}>Delete</ActionButton>
     </div>
   );
