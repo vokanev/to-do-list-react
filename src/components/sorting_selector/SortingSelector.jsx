@@ -1,7 +1,7 @@
 import {Context} from '../../utils/context';
 import { useContext } from 'react';
 
-function SortingSelector({onChange}) {
+function SortingSelector({onChange, value}) {
     const {dispatch} = useContext(Context);
 
     const handleChangeSorting = (event) => {
@@ -9,7 +9,7 @@ function SortingSelector({onChange}) {
     }
 
     return (
-        <select onChange={handleChangeSorting}>
+        <select onChange={handleChangeSorting} value={value}>
             <option value="NoSorting">No sorting</option>
             <option value="todoFirst">To do first</option>
             <option value="doneFirst">Done first</option>

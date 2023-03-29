@@ -1,19 +1,22 @@
 import { useState, useReducer, useEffect } from "react";
 
-import ActionButton from "../action_button/ActionButton";
-import AddAction from "../add_action/AddAction";
+import ActionButton from "../../components/action_button/ActionButton";
+import AddAction from "../../components/add_action/AddAction";
 
-import SortingSelector from "../sorting_selector/SortingSelector";
-import Title from "../title/Title";
+import SortingSelector from "../../components/sorting_selector/SortingSelector";
+import Title from "../../components/title/Title";
 import { Context } from "../../utils/context";
-import { DataLoader } from './../data_loader/DataLoader';
+import { DataLoader } from '../../components/data_loader/DataLoader';
 import { Reducer } from '../../utils/reducer'
-import ActionsList from "../actions_list/ActionsList";
+import ActionsList from "../../components/actions_list/ActionsList";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 export const TodoList = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const [todos, dispatch] = useReducer(Reducer, [])
-  const [sorting, setSorting] = useState(null);
-  const [searchPhrase, setSearchPhrase] = useState("");
+  const [sorting, setSorting] = useState(searchParams.get('sort'));
+  const [searchPhrase, setSearchPhrase] = useState(searchParams.get('search') ?? "");
 
   useEffect(() => {
     localStorage.setItem("todoList", JSON.stringify(todos));
@@ -22,6 +25,13 @@ export const TodoList = () => {
   const handleClearAll = () => {
     dispatch({ type: "removeAll" });
   };
+
+  useEffect(()=>{
+    let params = {};
+    if (sorting && sorting !== "NoSorting") params.sort = sorting;
+    if (searchPhrase) params.search = searchPhrase;
+    setSearchParams(params)
+  }, [searchPhrase, sorting])
 
   const handleSortingChange = (newSorting) => {
     setSorting(newSorting);
@@ -67,7 +77,7 @@ export const TodoList = () => {
         <AddAction />
         <ActionButton onClick={handleClearAll}>Clear all</ActionButton>
         <div className="actionsBlock">
-          <SortingSelector onChange={handleSortingChange} />
+          <SortingSelector onChange={handleSortingChange} value={sorting}/>
           <input
             type="text"
             placeholder="Search"
