@@ -2,10 +2,12 @@ import axios from "axios";
 
 import { useEffect, useContext, useState } from "react";
 
-import { Context } from "./../../utils/context";
+import { Context } from "../../utils/context";
+import { ActionKind } from "../../utils/reducer";
+import React from "react";
 
 export const DataLoader = () => {
-  const { dispatch } = useContext(Context);
+  const context = useContext(Context);
 
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -14,7 +16,7 @@ export const DataLoader = () => {
     axios
       .get("https://dummyjson.com/todos")
       .then((res) => {
-        dispatch({ type: "set", payload: res.data.todos });
+        context?.dispatch({ type: ActionKind.set, payloads: res.data.todos });
         setIsLoading(false);
         setError(null);
       })

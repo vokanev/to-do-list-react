@@ -1,7 +1,16 @@
+import React from "react";
+import { ITodo } from "../../data/ITodo";
 import ActionItem from "../action_item/ActionItem";
 import styles from "./ActionsList.module.css";
 
-function ActionsList({ todos, sorting, filter }) {
+interface IActionsList {
+  todos: ITodo[];
+  sorting: (action1: ITodo, action2: ITodo) => number;
+  filter: string;
+}
+
+const ActionsList: React.FC<IActionsList> = (props) => {
+  const { todos, sorting, filter } = props;
   const values = filter
     ? todos.filter((todo) =>
         todo.todo.toLowerCase().includes(filter.toLowerCase())
@@ -17,6 +26,6 @@ function ActionsList({ todos, sorting, filter }) {
       })}
     </div>
   );
-}
+};
 
 export default ActionsList;

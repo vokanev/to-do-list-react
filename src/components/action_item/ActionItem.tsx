@@ -2,34 +2,42 @@ import React, { useContext } from "react";
 import styles from "./ActionItem.module.css";
 import { Context } from "../../utils/context";
 import ActionButton from "../action_button/ActionButton";
-import axios from 'axios';
-import {useNavigate} from 'react-router-dom';
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { ITodo } from "../../data/ITodo";
+import { ActionKind } from "../../utils/reducer";
 
-function ActionItem({ todo, toggleTask, removeTask }) {
-  let { dispatch } = useContext(Context);
+interface IActionItem {
+  todo: ITodo;
+}
+
+const ActionItem: React.FC<IActionItem> = (props) => {
+  const { todo } = props;
+
+  let context = useContext(Context);
   let navigate = useNavigate();
 
-  const handleToggle = (todo) => {
+  const handleToggle = () => {
     axios
       .put("https://dummyjson.com/todos/" + todo.id, {
         completed: !todo.completed,
       })
       .then((res) =>
-        dispatch({
-          type: "toggle",
+        context?.dispatch({
+          type: ActionKind.toggle,
           payload: res.data,
         })
       )
-      .catch(error => {
+      .catch((error) => {
         console.log("toggle error");
-        dispatch({
-          type: "toggle",
+        context?.dispatch({
+          type: ActionKind.toggle,
           payload: {
             id: todo.id,
             completed: !todo.completed,
-            todo: todo.todo
+            todo: todo.todo,
           },
-        })
+        });
       });
   };
 
@@ -37,22 +45,20 @@ function ActionItem({ todo, toggleTask, removeTask }) {
     axios
       .delete("https://dummyjson.com/todos/" + todo.id)
       .then((res) =>
-        dispatch({
-          type: "remove",
+        context?.dispatch({
+          type: ActionKind.remove,
           payload: res.data,
         })
       )
-      .catch(error => {
-        dispatch({
-          type: "remove",
-          payload: todo
-        })
-      })
+      .catch((error) => {
+        context?.dispatch({
+          type: ActionKind.remove,
+          payload: todo,
+        });
+      });
   };
 
-  const handleInfo = () => {
-
-  }
+  const handleInfo = () => {};
 
   let textStyle = styles.itemText;
   if (todo.completed) {
@@ -63,13 +69,13 @@ function ActionItem({ todo, toggleTask, removeTask }) {
       <input
         type="checkbox"
         checked={todo.completed}
-        onChange={() => handleToggle(todo)}
+        onChange={() => handleToggle()}
       />
-      <div className={textStyle} >{todo.todo}</div>
+      <div className={textStyle}>{todo.todo}</div>
       <ActionButton onClick={() => navigate(`${todo.id}`)}>Info</ActionButton>
       <ActionButton onClick={handleRemove}>Delete</ActionButton>
     </div>
   );
-}
+};
 
 export default ActionItem;
