@@ -24,7 +24,14 @@ const App: React.FC = () => {
         <Route path="/todo" element={<TodoList />} />
         <Route path="/todo/:actionId" element={<ActionInfo />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/user" element={<UserProfile />} />
+        <Route
+          path="/user"
+          element={
+            <RequireAuth>
+              <UserProfile />
+            </RequireAuth>
+          }
+        />
         <Route path="*" element={<NoMatch />} />
       </Routes>
     </AuthProvider>

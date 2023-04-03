@@ -9,8 +9,7 @@ const UserProfile = () => {
   const signOut = context?.signOut;
   const navigate = useNavigate();
   return (
-    // <div className={style.userProfile}>
-    <div>
+    <div className={styles.userProfile}>
       <h1>User Profile</h1>
       <label>User name: {user}</label>
       <button onClick={() => signOut?.(() => navigate("/", { replace: true }))}>

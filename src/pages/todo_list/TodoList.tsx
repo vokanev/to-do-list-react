@@ -9,9 +9,10 @@ import { Context } from "../../utils/context";
 import { DataLoader } from "../../components/data_loader/DataLoader";
 import { ActionKind, TodoReducer, initialState } from "../../utils/reducer";
 import ActionsList from "../../components/actions_list/ActionsList";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import React from "react";
 import { ITodo } from "../../data/ITodo";
+import { ISearchParams } from "../../data/ISearchParams";
 
 export const TodoList = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -30,12 +31,12 @@ export const TodoList = () => {
     dispatch({ type: ActionKind.removeAll });
   };
 
-  // useEffect(() => {
-  //   let params: URLSearchParamsInit = {};
-  //   if (sorting && sorting !== "NoSorting") params.sort = sorting;
-  //   if (searchPhrase) params.search = searchPhrase;
-  //   setSearchParams(params);
-  // }, [searchPhrase, sorting]);
+  useEffect(() => {
+    let params: ISearchParams = {};
+    if (sorting && sorting !== "NoSorting") params.sort = sorting;
+    if (searchPhrase) params.search = searchPhrase;
+    setSearchParams(params);
+  }, [searchPhrase, sorting]);
 
   const handleSortingChange = (newSorting: string) => {
     setSorting(newSorting);
